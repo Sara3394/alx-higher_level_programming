@@ -1,4 +1,6 @@
 #include "lists.h"
+#include <stdio.h>
+
 /**
  * print_dlistint - prints all the nodes
  * @h: pointer to node structure
