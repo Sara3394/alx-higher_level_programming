@@ -1,23 +1,15 @@
 #!/usr/bin/python3
 """
-This function prints a square of hashes
-Returns:
-Hash
+prints
+First name and Last name
 """
 
 
-def print_square(size):
-    """Prints a square of hashes
-    Returns hashes
-    """
-    if isinstance(size, float) and size < 0:
-        raise TypeError("size must be an integer")
-    elif isinstance(size, int) is not True:
-        raise TypeError("size must be an integer")
-    elif size < 0:
-            raise ValueError("size must be >= 0")
+def say_my_name(first_name, last_name=""):
+    """ prints last and first if they are string """
+    if type(first_name) is not str or first_name == "":
+        raise TypeError("first_name must be a string")
+    if type(last_name) is not str:
+        raise TypeError("last_name must be a string")
     else:
-        for i in range(size):
-            for j in range(size):
-                print('#', end='')
-            print()
+        print(f"My name is {first_name} {last_name}")

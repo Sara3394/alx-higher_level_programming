@@ -1,31 +1,15 @@
->>> say_my_name = __import__("3-say_my_name").say_my_name
+#!/usr/bin/python3
+"""
+prints
+First name and Last name
+"""
 
->>> say_my_name(None, None)
-Traceback (most recent call last):
-TypeError: first_name must be a string
 
->>> say_my_name("bob", 10)
-Traceback (most recent call last):
-TypeError: last_name must be a string
-
->>> say_my_name()
-Traceback (most recent call last):
-TypeError: say_my_name() missing 1 required positional argument: 'first_name'
-
->>> say_my_name(None, )
-Traceback (most recent call last):
-TypeError: first_name must be a string
-
->>> say_my_name("bob", ) #doctest: +NORMALIZE_WHITESPACE
-My name is bob
-
->>> say_my_name(10, )
-Traceback (most recent call last):
-TypeError: first_name must be a string
-
->>> say_my_name("bob", 10)
-Traceback (most recent call last):
-TypeError: last_name must be a string
-
->>> say_my_name("bob", "smith")
-My name is bob smith
+def say_my_name(first_name, last_name=""):
+    """ prints last and first if they are string """
+    if type(first_name) is not str or first_name == "":
+        raise TypeError("first_name must be a string")
+    if type(last_name) is not str:
+        raise TypeError("last_name must be a string")
+    else:
+        print(f"My name is {first_name} {last_name}")
