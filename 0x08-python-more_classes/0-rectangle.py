@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
-Initialize a class
-Returns:
-None
+Module 0-rectangle
+defines a rectangle
+an empty rectangle
 """
 
 
 class Rectangle:
+    """defines an empty rectangle"""
     pass
