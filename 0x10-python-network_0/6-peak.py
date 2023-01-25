@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ 6. Find a peak """
 
+
 def find_peak(list_of_integers):
     """ find_peak """
     if list_of_integers == []:
