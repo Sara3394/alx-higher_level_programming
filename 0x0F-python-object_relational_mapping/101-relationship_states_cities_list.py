@@ -1,28 +1,27 @@
 #!/usr/bin/python3
 """script to create city and state object"""
 
+#!/usr/bin/python3
+"""script to create city and state object"""
+
 if __name__ == "__main__":
-    from sqlalchemy.engine import create_engine
-    from sqlalchemy.engine.url import URL
-    from sqlalchemy.orm import Session
-    from relationship_city import City
     from relationship_state import Base, State
+    from relationship_city import City
+    from sqlalchemy import (create_engine)
+    from sqlalchemy.orm import sessionmaker
     from sys import argv
 
-    db = {'drivername': 'mysql+mysqldb',
-          'host': 'localhost',
-          'port': '3306',
-          'username': argv[1],
-          'password': argv[2],
-          'database': argv[3]}
-
-    url = URL(**db)
-    engine = create_engine(url, pool_pre_ping=True)
+    user = argv[1]
+    passwd = argv[2]
+    db = argv[3]
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                           .format(user, passwd, db), pool_pre_ping=True)
     Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-    session = Session(engine)
-    for state in session.query(State):
-        print("{}: {}".format(state.id, state.name))
-        for city in state.cities:
-            print("    {}: {}".format(city.id, city.name))
+    for state, city in session.query(State, City).filter(
+            State.id == City.state_id).order_by(City.id):
+        print("{}: {} -> {}".format(city.id, city.name, state.name))
+
     session.close()
